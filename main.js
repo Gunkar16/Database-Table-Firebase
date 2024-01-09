@@ -52,3 +52,18 @@ function getData() {
 
 // Call the function to populate the table
 getData();
+
+function downloadExcel() {
+    // Get the table element
+    var table = document.getElementById('data-table-body');
+
+    // Convert the table to a worksheet
+    var ws = XLSX.utils.table_to_sheet(table);
+
+    // Create a workbook with a single sheet
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    // Save the workbook as an Excel file
+    XLSX.writeFile(wb, 'data.xlsx');
+}
